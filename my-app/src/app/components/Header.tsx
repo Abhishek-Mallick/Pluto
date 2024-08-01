@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { UserButton, useClerk, UserResource } from '@clerk/nextjs';
+import { UserButton, useClerk } from '@clerk/nextjs';
 import React, { FC } from 'react';
 
 const Header: FC = () => {
