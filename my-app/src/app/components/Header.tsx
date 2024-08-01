@@ -11,7 +11,7 @@ const Header: FC = () => {
       <div className='flex items-center'>
         <Link href='/'>
           <div className='text-lg font-bold text-white uppercase'>
-            Clerk App
+            Pluto.
           </div>
         </Link>
       </div>
