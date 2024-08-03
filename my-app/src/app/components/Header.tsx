@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { UserButton, useClerk, UserResource } from '@clerk/nextjs';
+import { UserButton, useClerk } from '@clerk/nextjs';
 import React, { FC } from 'react';
 
 const Header: FC = () => {
@@ -11,7 +11,7 @@ const Header: FC = () => {
       <div className='flex items-center'>
         <Link href='/'>
           <div className='text-lg font-bold text-white uppercase'>
-            Clerk App
+            Pluto.
           </div>
         </Link>
       </div>
