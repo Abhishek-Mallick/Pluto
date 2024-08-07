@@ -10,3 +10,42 @@ datasource db {
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
+
+model User {
+  id          Int         @id @default(autoincrement())
+  name        String
+  email       String      @unique
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  role        String
+  tickets     Ticket[]    @relation("UserTickets")
+  permissions Permission[]
+}
+
+model Permission {
+  id     Int    @id @default(autoincrement())
+  email  String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  access String
+}
+
+model Tag {
+  id          Int      @id @default(autoincrement())
+  name        String
+  tickets     Ticket[] @relation("TagTickets")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ticket {
+  id          Int       @id @default(autoincrement())
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  value       Float
+  description String
+  assigned    User?     @relation("UserTickets", fields: [assignedUserId], references: [id])
+  assignedUserId Int?
+  tags        Tag[]     @relation("TagTickets")
+}
