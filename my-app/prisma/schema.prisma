@@ -6,20 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider     = "sqlite"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model User {
-  id          Int         @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   name        String
-  email       String      @unique
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  email       String       @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   role        String
-  tickets     Ticket[]    @relation("UserTickets")
+  tickets     Ticket[]     @relation("UserTickets")
   permissions Permission[]
+  Manager     Manager?     @relation(fields: [managerId], references: [id])
+  managerId   Int?
 }
 
 model Permission {
@@ -31,21 +33,45 @@ model Permission {
 }
 
 model Tag {
-  id          Int      @id @default(autoincrement())
-  name        String
-  tickets     Ticket[] @relation("TagTickets")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  name      String
+  tickets   Ticket[] @relation("TagTickets")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Ticket {
-  id          Int       @id @default(autoincrement())
-  name        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  value       Float
-  description String
-  assigned    User?     @relation("UserTickets", fields: [assignedUserId], references: [id])
+  id             Int      @id @default(autoincrement())
+  name           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  value          Float
+  description    String
+  assigned       User?    @relation("UserTickets", fields: [assignedUserId], references: [id])
   assignedUserId Int?
-  tags        Tag[]     @relation("TagTickets")
+  tags           Tag[]    @relation("TagTickets")
+}
+
+model Invitation {
+  id        Int     @id @default(autoincrement())
+  email     String
+  manager   Manager @relation(fields: [managerId], references: [id])
+  managerId Int
+  status    String
+  role      String
+}
+
+model Manager {
+  id           Int          @id @default(autoincrement())
+  name         String
+  companyEmail String       @unique
+  companyPhone String
+  address      String
+  city         String
+  state        String
+  country      String
+  users        User[] // Assuming User is another model you might have
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  invitations  Invitation[]
 }
