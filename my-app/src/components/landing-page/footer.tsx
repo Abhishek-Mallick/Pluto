@@ -24,7 +24,7 @@ export default function Footer() {
         <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
           <div className="not-prose flex flex-col gap-6">
             <Link href="/">
-              <h3 className="sr-only">brijr/components</h3>
+              <h3 className="sr-only">pluto</h3>
               {/* <Image
                 src={Logo}
                 alt="Logo"
@@ -35,8 +35,7 @@ export default function Footer() {
             </Link>
             <p>
               <Balancer>
-                brijr/components is a collection of Next.js, React, Typescript
-                components for building landing pages and websites.
+               pluto
               </Balancer>
             </p>
           </div>
@@ -67,7 +66,7 @@ export default function Footer() {
           </div>
           <p className="text-muted-foreground">
             ©{" "}
-            <a href="https://github.com/brijr/components">brijr/components</a>.
+            <a href="https://github.com/brijr/components">pluto</a>.
             All rights reserved. 2024-present.
           </p>
         </Container>

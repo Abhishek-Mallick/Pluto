@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button"
 import { SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
 import { MenuIcon } from 'lucide-react'
+import Modal from '@/components/modal'
+
 
 type Props = {
     user?: null | User
@@ -104,6 +106,7 @@ const Navigation = ({ user }: Props) => {
                 <Link href={'/sign-in'}>
                     <Button variant="ghost">Login</Button>
                 </Link>
+                {/* <Modal triggerButtonText="Login" /> */}
                     
                 <UserButton />
                 <ModeToggle />
